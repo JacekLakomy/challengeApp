@@ -1,31 +1,47 @@
-﻿int myNumber = 159512132;
-string myNumberAsString = myNumber.ToString();
-char[] digits = myNumberAsString.ToCharArray();
+﻿using challengeapp1;
 
-List<char> numbers = new List<char>();
+Employee employee1 = new Employee("Jacek", "Łakomy");
+Employee employee2 = new Employee("Stefan", "Burczymucha");
+Employee employee3 = new Employee("Beata", "Garbata");
 
-numbers.Add('0');
-numbers.Add('1');
-numbers.Add('2');
-numbers.Add('3');
-numbers.Add('4');
-numbers.Add('5');
-numbers.Add('6');
-numbers.Add('7');
-numbers.Add('8');
-numbers.Add('9');
+//ocena1
+employee1.Addrating(4);
+employee2.Addrating(2);
+employee3.Addrating(3);
 
-Console.WriteLine("Wyniki dla liczby 159512132");
+//ocena2
+employee1.Addrating(4);
+employee2.Addrating(7);
+employee3.Addrating(9);
 
-foreach (char number in numbers)
+//ocena3
+employee1.Addrating(5);
+employee2.Addrating(5);
+employee3.Addrating(6);
+
+//ocena4
+employee1.Addrating(3);
+employee2.Addrating(1);
+employee3.Addrating(7);
+
+//ocena5
+employee1.Addrating(5);
+employee2.Addrating(2);
+employee3.Addrating(4);
+
+List<Employee> employees = new List<Employee>()
 {
-    int counter = 0;
-    foreach (char i in digits)
+    employee1, employee2, employee3
+};
+
+var bestResult = employees.Max(Employee => Employee.Result);
+
+Employee personWithBestResult = employees[0];
+foreach (Employee employee in employees)
+    if (employee.Result > personWithBestResult.Result)
     {
-        if (i == number) counter++;
+        personWithBestResult = (Employee)employee;
     }
-    Console.WriteLine(number + " => " + counter);
-}
 
-
-
+Console.WriteLine("Najwyższa ocena:" + " " + bestResult);
+Console.WriteLine(personWithBestResult.Name + " " + personWithBestResult.Surname);
