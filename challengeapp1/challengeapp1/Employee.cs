@@ -24,7 +24,7 @@
             }
         }
 
-        public void Addrating(int number)
+        public void AddRating(int number)
         {
             this.rating.Add(number);
         }

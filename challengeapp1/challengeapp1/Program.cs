@@ -5,29 +5,29 @@ Employee employee2 = new Employee("Stefan", "Burczymucha");
 Employee employee3 = new Employee("Beata", "Garbata");
 
 //ocena1
-employee1.Addrating(4);
-employee2.Addrating(2);
-employee3.Addrating(3);
+employee1.AddRating(4);
+employee2.AddRating(2);
+employee3.AddRating(3);
 
 //ocena2
-employee1.Addrating(4);
-employee2.Addrating(7);
-employee3.Addrating(9);
+employee1.AddRating(4);
+employee2.AddRating(7);
+employee3.AddRating(9);
 
 //ocena3
-employee1.Addrating(5);
-employee2.Addrating(5);
-employee3.Addrating(6);
+employee1.AddRating(5);
+employee2.AddRating(5);
+employee3.AddRating(6);
 
 //ocena4
-employee1.Addrating(3);
-employee2.Addrating(1);
-employee3.Addrating(7);
+employee1.AddRating(3);
+employee2.AddRating(1);
+employee3.AddRating(7);
 
 //ocena5
-employee1.Addrating(5);
-employee2.Addrating(2);
-employee3.Addrating(4);
+employee1.AddRating(5);
+employee2.AddRating(2);
+employee3.AddRating(4);
 
 List<Employee> employees = new List<Employee>()
 {
@@ -44,5 +44,4 @@ foreach (Employee employee in employees)
     }
 
 Console.WriteLine("Najwyższa ocena:" + " " + bestResult);
-
 Console.WriteLine(personWithBestResult.Name + " " + personWithBestResult.Surname);
