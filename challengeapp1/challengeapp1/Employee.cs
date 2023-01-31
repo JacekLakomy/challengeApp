@@ -6,7 +6,7 @@
 
         public int Age { get; private set; }
 
-        public Employee(string name, string surname)//konstruktor (jest wywoływany automatycznie podczas tworzenia jakiegoś usera
+        public Employee(string name, string surname)//konstruktor (jest wywoływany automatycznie podczas tworzenia jakiegoś usera)
         {
             this.Name = name;//parametry konstruktora
             this.Surname = surname;

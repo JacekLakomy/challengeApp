@@ -44,4 +44,5 @@ foreach (Employee employee in employees)
     }
 
 Console.WriteLine("Najwyższa ocena:" + " " + bestResult);
+
 Console.WriteLine(personWithBestResult.Name + " " + personWithBestResult.Surname);
