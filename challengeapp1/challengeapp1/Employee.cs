@@ -28,5 +28,9 @@
         {
             this.rating.Add(number);
         }
+        public void PenaltyPoints(int number)
+        {
+            this.rating.Add(-number);
+        }
     }
 }
