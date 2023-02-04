@@ -1,24 +1,39 @@
-using System.Reflection.Metadata;
-
 namespace challengeapp1.Tests
 {
     public class Tests
-    {
-        
+    {        
         [Test]
-        public void WhenUserCollectPositiveAndNegativePoints_ShouldCorrectResult()
+        public void StatisticsShouldBeTheSameAsExpected()
         {
             //arrange
-            var user = new Employee("Gra¿yna", "Ba¿yna");
-            user.AddRating(5);
-            user.AddRating(6);
-            user.PenaltyPoints(10);
+            var employee = new Employee("Irek", "Œmierdzigirek");
+            employee.AddGrade(2);
+            employee.AddGrade(3);
+            employee.AddGrade(-5);
+
             //act
-            var result = user.Result;
+            var statistics = employee.GetStatistics();
 
             //assert
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(-5,statistics.Min);
+            Assert.AreEqual(3,statistics.Max);
+            Assert.AreEqual(0, statistics.Average);
            
+        }
+
+        [Test]
+        public void IfNoGradesStatisticsMinAndMaxShouldBeZero()
+        {
+            //arrange
+            var employee = new Employee("Irek", "Œmierdzigirek");
+            
+            //act
+
+            var statistics = employee.GetStatistics();
+
+            //assert
+            Assert.AreEqual(0, statistics.Min);
+            Assert.AreEqual(0, statistics.Max);
         }
     }
 }

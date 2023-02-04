@@ -2,35 +2,40 @@
 {
     public class Employee
     {
-        public List<int> rating = new List<int>();
+        private List<float> grades = new List<float>();
 
-        public int Age { get; private set; }
-
-        public Employee(string name, string surname)//konstruktor (jest wywoływany automatycznie podczas tworzenia jakiegoś usera)
+        public Employee(string name, string surname)
         {
-            this.Name = name;//parametry konstruktora
+            this.Name = name;
             this.Surname = surname;
         }
 
-        public string Name { get; private set; } // pola property (hermetyzacja)
-
+        public string Name { get; private set; }
         public string Surname { get; private set; }
 
-        public int Result
+        public void AddGrade(float grade)
         {
-            get
-            {
-                return this.rating.Sum();
-            }
+            this.grades.Add(grade);
         }
 
-        public void AddRating(int number)
+        public Statistics GetStatistics()
         {
-            this.rating.Add(number);
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var grade in this.grades)
+            {
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
+            }
+
+            statistics.Average /= this.grades.Count;
+            return statistics;
         }
-        public void PenaltyPoints(int number)
-        {
-            this.rating.Add(-number);
-        }
+
+
     }
 }
