@@ -1,39 +1,77 @@
 namespace challengeapp1.Tests
 {
     public class Tests
-    {        
+    {
         [Test]
-        public void StatisticsShouldBeTheSameAsExpected()
+        public void GradeAsLetterAShouldReturnCorrectStatistics()
         {
             //arrange
-            var employee = new Employee("Irek", "Œmierdzigirek");
-            employee.AddGrade(2);
-            employee.AddGrade(3);
-            employee.AddGrade(-5);
+            var employee = new Employee("Jacek", "£akomy");
 
+            employee.AddGrade("a");
+            employee.AddGrade("A");
             //act
             var statistics = employee.GetStatistics();
 
             //assert
-            Assert.AreEqual(-5,statistics.Min);
-            Assert.AreEqual(3,statistics.Max);
-            Assert.AreEqual(0, statistics.Average);
-           
+            Assert.AreEqual(100, statistics.Min);
+            Assert.AreEqual(100, statistics.Max);
+            Assert.AreEqual(100, statistics.Average);
+            Assert.AreEqual('A', statistics.AverageLetter);
         }
 
         [Test]
-        public void IfNoGradesStatisticsMinAndMaxShouldBeZero()
+        public void GradeAsLetterBShouldReturnCorrectStatistics()
         {
             //arrange
-            var employee = new Employee("Irek", "Œmierdzigirek");
-            
-            //act
+            var employee = new Employee("Jacek", "£akomy");
 
+            employee.AddGrade("b");
+            employee.AddGrade("B");
+            //act
+            var statistics = employee.GetStatistics();
+
+            //assert
+            Assert.AreEqual(80, statistics.Min);
+            Assert.AreEqual(80, statistics.Max);
+            Assert.AreEqual(80, statistics.Average);
+            Assert.AreEqual('A', statistics.AverageLetter);
+        }
+
+        [Test]
+        public void GradeAsLetterCShouldReturnCorrectStatistics()
+        {
+            //arrange
+            var employee = new Employee("Jacek", "£akomy");
+
+            employee.AddGrade("c");
+            employee.AddGrade("C");
+            //act
+            var statistics = employee.GetStatistics();
+
+            //assert
+            Assert.AreEqual(60, statistics.Min);
+            Assert.AreEqual(60, statistics.Max);
+            Assert.AreEqual(60, statistics.Average);
+            Assert.AreEqual('B', statistics.AverageLetter);
+        }
+
+        [Test]
+        public void GradeAsNumberCShouldReturnCorrectStatistics()
+        {
+            //arrange
+            var employee = new Employee("Jacek", "£akomy");
+
+            employee.AddGrade("100");
+            employee.AddGrade("0");
+            //act
             var statistics = employee.GetStatistics();
 
             //assert
             Assert.AreEqual(0, statistics.Min);
-            Assert.AreEqual(0, statistics.Max);
+            Assert.AreEqual(100, statistics.Max);
+            Assert.AreEqual(50, statistics.Average);
+            Assert.AreEqual('C', statistics.AverageLetter);
         }
     }
 }
