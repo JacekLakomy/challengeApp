@@ -25,7 +25,7 @@ namespace challengeapp1
             }
             else
             {
-                Console.WriteLine("invalid grade value");
+                throw new Exception("Wprowadź liczbę z przediału <0-100> lub literę od A(a) do E(e)");
             }
         }
 
@@ -35,50 +35,34 @@ namespace challengeapp1
             {
                 case "A":
                 case "a":
-                    {
-                        this.grades.Add(100);
-                        break;
-                    }
-
+                    this.grades.Add(100);
+                    break;
                 case "B":
                 case "b":
-                    {
-                        this.grades.Add(80);
-                        break;
-                    }
-
+                    this.grades.Add(80);
+                    break;
                 case "C":
                 case "c":
-                    {
-                        this.grades.Add(60);
-                        break;
-                    }
-
+                    this.grades.Add(60);
+                    break;
                 case "D":
                 case "d":
-                    {
-                        this.grades.Add(40);
-                        break;
-                    }
-
+                    this.grades.Add(40);
+                    break;
                 case "E":
                 case "e":
-                    {
-                        this.grades.Add(20);
-                        break;
-                    }
+                    this.grades.Add(20);
+                    break;
                 default:
+                    if (float.TryParse(grade, out float result))
                     {
-                        if (float.TryParse(grade, out float result))
-                        {
-                            this.AddGrade(result);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wprowadź liczbę z przediału <0-100> lub literę od A(a) do C(c)");
-                        }
-                        break;
+                        this.AddGrade(result);
                     }
+                    else
+                    {
+                        throw new Exception("Wprowadź liczbę z przediału <0-100> lub literę od A(a) do E(e)");
+                    }
+                    break;
             }
         }
 
