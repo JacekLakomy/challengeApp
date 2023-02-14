@@ -3,19 +3,38 @@ using System.Diagnostics;
 
 namespace challengeapp1
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname)
+        public Employee()
+            : base()
         {
-            this.Name = name;
-            this.Surname = surname;
+            this.Position = ("NA");
+        }
+        
+        public Employee(string name, string surname)
+            : base(name, surname)
+        {
+            this.Position = ("NA");
         }
 
-        public string Name { get; private set; }
+        public Employee(string name, string surname, string position, float earnings)
+            :base(name, surname)
+        {
+            this.Position= position;
+            this.Earnings= earnings;
+        }
 
-        public string Surname { get; private set; }
+        public Employee(string name, string surname, char sex, int age, string position, float earnings)
+            : base (name, surname, sex, age)
+        {
+            this.Position = position;
+            this.Earnings = earnings;
+        }
+
+        public string Position { get; private set; }
+        public float Earnings { get; private set; }
 
         public void AddGrade(float grade)
         {
