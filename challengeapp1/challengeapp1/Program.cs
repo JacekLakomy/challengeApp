@@ -3,19 +3,85 @@
 Console.WriteLine(" PROGRAM DO GROMADZENIA OCEN PRACOWNIKÓW");
 Console.WriteLine("<======================================================================================>");
 Console.WriteLine();
+Console.WriteLine("Aby zakończyć pracę programu, wprowadź q lub Q");
 
-var employee = new Employee("Jacek", "Łakomy");
+var employee = new EmployeeInFile("Jacek", "Łakomy");
+try
+{
+    employee.AddGrade("A");    
+}
+catch(Exception ex)
+{
+    Console.WriteLine($"Exception catched: {ex.Message}");
+}
+try
+{
+    employee.AddGrade('b');    
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Exception catched: {ex.Message}");
+}
+try
+{    
+    employee.AddGrade('g');    
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Exception catched: {ex.Message}");
+}
+try
+{    
+    employee.AddGrade(0.5f);    
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Exception catched: {ex.Message}");
+}
+try
+{    
+    employee.AddGrade(2.5);    
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Exception catched: {ex.Message}");
+}
+
+try
+{   
+    employee.AddGrade(23);    
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Exception catched: {ex.Message}");
+}
+try
+{
+    employee.AddGrade(230);
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Exception catched: {ex.Message}");
+}
 
 while (true)
 {
-    Console.WriteLine("Podaj ocenę dla: Jacek  Łakomy");
+    Console.WriteLine($"Podaj ocenę dla: {employee.Name} {employee.Surname}");
     var input = Console.ReadLine();
     if (input == "q" || input == "Q")
     {
         break;
     }
-    employee.AddGrade(input);
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Exception catched: {ex.Message}");
+    }
 }
+
 
 var statistics = employee.GetStatistics();
 
