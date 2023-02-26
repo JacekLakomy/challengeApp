@@ -8,7 +8,7 @@ namespace challengeapp1
     public class EmployeeInFile : EmployeeBase
     {
         private const string fileName = "grades.txt";
-      
+
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
         {
@@ -22,8 +22,13 @@ namespace challengeapp1
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+
+                    if (InvokeGradeAdded != null)
+                    {
+                        InvokeGradeAdded(this, new EventArgs());
+                    }
                 }
-            }           
+            }
             else
             {
                 throw new Exception("Wprowadź liczbę z przediału <0;100>");
@@ -75,7 +80,7 @@ namespace challengeapp1
                         using (var writer = File.AppendText(fileName))
                         {
                             writer.WriteLine(result);
-                        }                      
+                        }
                     }
                     else
                     {
@@ -113,20 +118,20 @@ namespace challengeapp1
         private List<float> ReadGradesFromFile()
         {
             var grades = new List<float>();
-            if (File.Exists($"{ fileName}"))
+            if (File.Exists($"{fileName}"))
             {
                 using (var reader = File.OpenText($"{fileName}"))
                 {
                     var line = reader.ReadLine();
-                    while(line != null)
+                    while (line != null)
                     {
                         var number = float.Parse(line);
                         grades.Add(number);
-                        line = reader.ReadLine() ;
+                        line = reader.ReadLine();
                     }
                 }
             }
-            return grades;        
+            return grades;
         }
 
         private Statistics CountStatistics(List<float> grades)

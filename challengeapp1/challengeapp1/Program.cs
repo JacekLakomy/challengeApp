@@ -5,7 +5,15 @@ Console.WriteLine("<============================================================
 Console.WriteLine();
 Console.WriteLine("Aby zakończyć pracę programu, wprowadź q lub Q");
 
-var employee = new EmployeeInFile("Jacek", "Łakomy");
+var employee = new EmployeeInMemory("Jacek", "Łakomy");
+
+employee.GradeAdded += EmployeeGradeAdded;
+
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nową ocenę");
+}
+
 try
 {
     employee.AddGrade("A");    
@@ -74,12 +82,12 @@ while (true)
     }
     try
     {
-        employee.AddGrade(input);
+        employee.AddGrade(input);     
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Exception catched: {ex.Message}");
-    }
+    }    
 }
 
 
