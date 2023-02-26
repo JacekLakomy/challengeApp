@@ -22,13 +22,13 @@ namespace challengeapp1
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
-
-                    if (InvokeGradeAdded != null)
-                    {
-                        InvokeGradeAdded(this, new EventArgs());
-                    }
+                }
+                if (InvokeGradeAdded != null)
+                {
+                    InvokeGradeAdded(this, new EventArgs());
                 }
             }
+
             else
             {
                 throw new Exception("Wprowadź liczbę z przediału <0;100>");
@@ -111,8 +111,14 @@ namespace challengeapp1
         public override Statistics GetStatistics()
         {
             var gradesFromFile = this.ReadGradesFromFile();
-            var result = this.CountStatistics(gradesFromFile);
-            return result;
+            var statistics = new Statistics();
+
+            foreach (var grade in gradesFromFile)
+            {
+                statistics.AddStatistics(grade);
+            }
+            
+            return statistics;
         }
 
         private List<float> ReadGradesFromFile()
@@ -125,51 +131,13 @@ namespace challengeapp1
                     var line = reader.ReadLine();
                     while (line != null)
                     {
-                        var number = float.Parse(line);
+                        float number = float.Parse(line);
                         grades.Add(number);
                         line = reader.ReadLine();
                     }
                 }
             }
             return grades;
-        }
-
-        private Statistics CountStatistics(List<float> grades)
-        {
-            var statistics = new Statistics();
-            statistics.Min = float.MaxValue;
-            statistics.Max = float.MinValue;
-            statistics.Sum = 0;
-            statistics.Average = 0;
-
-            foreach (var grade in grades)
-            {
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Average += grade;
-                statistics.Sum += grade;
-            }
-            statistics.Average = statistics.Sum / grades.Count;
-
-            switch (statistics.Average)
-            {
-                case var a when a >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var a when a >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var a when a >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var a when a >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
-            }
-            return statistics;
-        }
+        } 
     }
 }

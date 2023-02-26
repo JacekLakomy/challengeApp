@@ -5,7 +5,7 @@ Console.WriteLine("<============================================================
 Console.WriteLine();
 Console.WriteLine("Aby zakończyć pracę programu, wprowadź q lub Q");
 
-var employee = new EmployeeInMemory("Jacek", "Łakomy");
+var employee = new EmployeeInFile("Jacek", "Łakomy");
 
 employee.GradeAdded += EmployeeGradeAdded;
 
@@ -13,65 +13,6 @@ void EmployeeGradeAdded(object sender, EventArgs args)
 {
     Console.WriteLine("Dodano nową ocenę");
 }
-
-try
-{
-    employee.AddGrade("A");    
-}
-catch(Exception ex)
-{
-    Console.WriteLine($"Exception catched: {ex.Message}");
-}
-try
-{
-    employee.AddGrade('b');    
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Exception catched: {ex.Message}");
-}
-try
-{    
-    employee.AddGrade('g');    
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Exception catched: {ex.Message}");
-}
-try
-{    
-    employee.AddGrade(0.5f);    
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Exception catched: {ex.Message}");
-}
-try
-{    
-    employee.AddGrade(2.5);    
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Exception catched: {ex.Message}");
-}
-
-try
-{   
-    employee.AddGrade(23);    
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Exception catched: {ex.Message}");
-}
-try
-{
-    employee.AddGrade(230);
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Exception catched: {ex.Message}");
-}
-
 while (true)
 {
     Console.WriteLine($"Podaj ocenę dla: {employee.Name} {employee.Surname}");
@@ -89,7 +30,6 @@ while (true)
         Console.WriteLine($"Exception catched: {ex.Message}");
     }    
 }
-
 
 var statistics = employee.GetStatistics();
 
